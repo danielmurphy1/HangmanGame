@@ -8,7 +8,36 @@ namespace HangmanGame
 {
     public class GameScreen
     {
-        public void GenerateWelcomeMessage()
+        public string[,] gallowsAndHangman = new string[6, 6]
+        {
+            {"\t\t\t\t\t ", " ", "-", "-", "-", "|"},
+            {"\t\t\t\t\t ", " ", "O", " ", " ", "|"},
+            {"\t\t\t\t\t ", "-", "|", "-", " ", "|"},
+            {"\t\t\t\t\t ", " ", "|", " ", " ", "|"},
+            {"\t\t\t\t\t ", "/", " ", "\\", " ", "|"},
+            {"\t\t\t\t\t ", " ", " ", " ", " ", "|"},
+        };
+       
+        public void DrawGallowsAndHangMan()
+        {
+            for (int i = 0; i < gallowsAndHangman.GetLength(0); i++)
+            {
+                for (int j = 0; j < gallowsAndHangman.GetLength(1); j++)
+                {
+                    Console.Write(gallowsAndHangman[i, j]);
+                }
+                Console.WriteLine("");
+            }
+        }
+
+        public void DisplayCharactersForMysteryWord(char[] mysteryWordArray)
+        {
+            foreach (char letter in mysteryWordArray)
+            {
+                Console.Write($"{letter}  ");
+            }
+        }
+        public void DisplayWelcomeMessage()
         {
             Console.Clear();
             Console.WriteLine("\n\n\n\n\n\n");
@@ -19,7 +48,12 @@ namespace HangmanGame
             Console.WriteLine("\t\t\tIf all pieces are drawn before you guess the mystery word correctly, you lose.");
             Console.WriteLine("\t\t\t\t\tYou have a total of seven guesses. Good Luck!");
             Console.WriteLine("\t\t\t\t\t\tPress SPACEBAR to play.");
-            Console.WriteLine("\t\t\t\t\t\tPress Q to quit.");
+            Console.WriteLine("\t\t\t\t\t     Press any other key to quit.");
+        }
+
+        public void DisplayGoodbyeMessage()
+        {
+            Console.WriteLine("\n\n\n\t\t\t\t\tThank you for playing Console Hangman! Goodbye.");
         }
     }
 }

@@ -6,19 +6,35 @@ string wordList = File.ReadAllText("../../../../word_list.txt");
 string[] words = wordList.Split(",");
 
 GameScreen gameScreen = new GameScreen();
+MysteryWord mysteryWord = new MysteryWord();
 
-gameScreen.GenerateWelcomeMessage();
+gameScreen.DisplayWelcomeMessage();
 
 if (Console.ReadKey().Key == ConsoleKey.Spacebar)
 {
     Console.WriteLine("Temp Holder - Space Pressed");
-}
-else if (Console.ReadKey().Key == ConsoleKey.Q ) //takes two presses - why?
-{
-    Console.WriteLine("Temp Holder - Q Pressed");
+    mysteryWord.GenerateMysterWord();
+    mysteryWord.CreateMysteryWordArray(mysteryWord.word);
+    //Console.WriteLine(mysteryWordArray[0]);
+    //Console.WriteLine(mysteryWordArray[1]);
+    //Console.WriteLine(mysteryWordArray[2]);
+
 }
 else
 {
-    //add another key pressed scenario
-
+    return;
 }
+
+while (mysteryWord.isWordSolved != true)
+{
+    Console.WriteLine("While Loop Running");
+    gameScreen.DrawGallowsAndHangMan();
+    //show mysteryword characters as _
+    gameScreen.DisplayCharactersForMysteryWord(mysteryWord.mysteryWordCharacters);
+   
+    if(Console.ReadKey().Key == ConsoleKey.Spacebar)
+    {
+        mysteryWord.ToogleIsWordSolved();
+    }
+}
+gameScreen.DisplayGoodbyeMessage();
