@@ -10,16 +10,17 @@ namespace HangmanGame
     {
         public string[,] gallowsAndHangman = new string[6, 6]
         {
-            {"\t\t\t\t\t ", " ", "-", "-", "-", "|"},
-            {"\t\t\t\t\t ", " ", "O", " ", " ", "|"},
-            {"\t\t\t\t\t ", "-", "|", "-", " ", "|"},
-            {"\t\t\t\t\t ", " ", "|", " ", " ", "|"},
-            {"\t\t\t\t\t ", "/", " ", "\\", " ", "|"},
-            {"\t\t\t\t\t ", " ", " ", " ", " ", "|"},
+            {"\t\t\t\t\t\t\t\t ", " ", "-", "-", "-", "|"},
+            {"\t\t\t\t\t\t\t\t ", " ", "O", " ", " ", "|"},
+            {"\t\t\t\t\t\t\t\t ", "-", "|", "-", " ", "|"},
+            {"\t\t\t\t\t\t\t\t ", " ", "|", " ", " ", "|"},
+            {"\t\t\t\t\t\t\t\t ", "/", " ", "\\", " ", "|"},
+            {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
         };
        
         public void DrawGallowsAndHangMan()
         {
+            Console.WriteLine("\n\n\n");
             for (int i = 0; i < gallowsAndHangman.GetLength(0); i++)
             {
                 for (int j = 0; j < gallowsAndHangman.GetLength(1); j++)
@@ -30,11 +31,28 @@ namespace HangmanGame
             }
         }
 
+        public void PopulateHiddenWordCharacters(int mysterWordLength)
+        {
+            for(int i = 0; i < mysterWordLength; i++)
+            {
+                Console.Write("_  ");
+            }
+        }
+
         public void DisplayCharactersForMysteryWord(char[] mysteryWordArray)
         {
             foreach (char letter in mysteryWordArray)
             {
                 Console.Write($"{letter}  ");
+            }
+        }
+
+        public void DisplayGuessedLetters(List<char> lettersGuessed)
+        {
+            Console.WriteLine("\nYou have guessed the following letters:\n");
+            foreach (char letter in lettersGuessed)
+            {
+                Console.Write(letter + " ");
             }
         }
         public void DisplayWelcomeMessage()

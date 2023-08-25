@@ -7,34 +7,49 @@ string[] words = wordList.Split(",");
 
 GameScreen gameScreen = new GameScreen();
 MysteryWord mysteryWord = new MysteryWord();
+Player player = new Player();
 
 gameScreen.DisplayWelcomeMessage();
 
 if (Console.ReadKey().Key == ConsoleKey.Spacebar)
 {
-    Console.WriteLine("Temp Holder - Space Pressed");
+    Console.Clear();
     mysteryWord.GenerateMysterWord();
     mysteryWord.CreateMysteryWordArray(mysteryWord.word);
-    //Console.WriteLine(mysteryWordArray[0]);
-    //Console.WriteLine(mysteryWordArray[1]);
-    //Console.WriteLine(mysteryWordArray[2]);
-
+    gameScreen.DisplayGuessedLetters(player.lettersGuessed);
+    gameScreen.DrawGallowsAndHangMan();
 }
 else
 {
     return;
 }
 
-while (mysteryWord.isWordSolved != true)
+while (!mysteryWord.isWordSolved)
 {
-    Console.WriteLine("While Loop Running");
-    gameScreen.DrawGallowsAndHangMan();
     //show mysteryword characters as _
     gameScreen.DisplayCharactersForMysteryWord(mysteryWord.mysteryWordCharacters);
-   
-    if(Console.ReadKey(true).Key == ConsoleKey.Spacebar)
+    Console.WriteLine("");
+    gameScreen.PopulateHiddenWordCharacters(mysteryWord.word.Length);
+    player.GuessLetter();
+    if (player.IsGuessValid())
     {
-        mysteryWord.ToogleIsWordSolved();
+        Console.WriteLine("valid");
+        player.AddToGuessedLetters(player.input);
+        Console.Clear();
+        gameScreen.DisplayGuessedLetters(player.lettersGuessed);
+        gameScreen.DrawGallowsAndHangMan();
     }
+    else
+    {
+        Console.WriteLine("not valid");
+        Console.Clear();
+        gameScreen.DisplayGuessedLetters(player.lettersGuessed);
+        gameScreen.DrawGallowsAndHangMan();
+    }
+   
+    //if(Console.ReadKey(true).Key == ConsoleKey.Spacebar)
+    //{
+    //    mysteryWord.ToogleIsWordSolved();
+    //}
 }
 gameScreen.DisplayGoodbyeMessage();
