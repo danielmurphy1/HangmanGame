@@ -32,7 +32,7 @@ while (mysteryWord.isWordSolved != true)
     //show mysteryword characters as _
     gameScreen.DisplayCharactersForMysteryWord(mysteryWord.mysteryWordCharacters);
    
-    if(Console.ReadKey().Key == ConsoleKey.Spacebar)
+    if(Console.ReadKey(true).Key == ConsoleKey.Spacebar)
     {
         mysteryWord.ToogleIsWordSolved();
     }
