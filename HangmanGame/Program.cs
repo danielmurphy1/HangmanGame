@@ -33,16 +33,13 @@ while (!mysteryWord.isWordSolved)
     player.GuessLetter();
     if (player.IsGuessValid())
     {
-        Console.WriteLine("valid");
-        player.AddToGuessedLetters(player.input);
         Console.Clear();
+        player.AddToGuessedLetters(player.input);
         gameScreen.DisplayGuessedLetters(player.lettersGuessed);
         gameScreen.DrawGallowsAndHangMan();
     }
     else
     {
-        Console.WriteLine("not valid");
-        Console.Clear();
         gameScreen.DisplayGuessedLetters(player.lettersGuessed);
         gameScreen.DrawGallowsAndHangMan();
     }

@@ -15,31 +15,40 @@ namespace HangmanGame
 
         public void GuessLetter()
         {
-            //while (true)
-            //{
                 Console.WriteLine("\nWhat letter would you like to guess?");
                 input = Console.ReadKey().KeyChar;
-                //if (char.IsLetter(input))
-                //{
-                //    return input;
-                //} else
-                //{
-                //    Console.WriteLine("\nThat is not a valid letter. Please choose a valid letter.");
-                //}
-            //}
-            
-            
         }
 
         public void AddToGuessedLetters(char character)
         {
             char upperCaseGuess = char.ToUpper(character);
-            lettersGuessed.Add(upperCaseGuess);
+            if (lettersGuessed.Contains(upperCaseGuess))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("That letter has already been guessed. Please guess a new letter.\n");
+                Console.ResetColor();
+            }
+            else
+            {
+                lettersGuessed.Add(upperCaseGuess);
+            }
         }
 
         public bool IsGuessValid()
         {
-            return char.IsLetter(input);
+            if (!char.IsLetter(input))
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("That was not a valid letter. Please guess a valid letter.");
+                Console.ResetColor();
+                return false;
+            }
+            else
+            {
+                return char.IsLetter(input);
+
+            }
         }
     }
 }

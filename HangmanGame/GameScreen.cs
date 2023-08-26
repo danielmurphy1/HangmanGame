@@ -49,7 +49,7 @@ namespace HangmanGame
 
         public void DisplayGuessedLetters(List<char> lettersGuessed)
         {
-            Console.WriteLine("\nYou have guessed the following letters:\n");
+            Console.WriteLine("You have guessed the following letters:\n");
             foreach (char letter in lettersGuessed)
             {
                 Console.Write(letter + " ");

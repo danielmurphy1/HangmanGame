@@ -38,13 +38,5 @@ namespace HangmanGame
         {
             return isWordSolved = !isWordSolved;
         }
-
-        //public char[] HashedMysteryWord(char[] mysteryWordArray)
-        //{
-        //    foreach (char letter in mysteryWordArray)
-        //    {
-        //        letter = "_"
-        //    }
-        //}
     }
 }
