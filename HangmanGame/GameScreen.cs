@@ -38,7 +38,7 @@ namespace HangmanGame
             for (int i = 0; i < mysterWordLength; i++)
             {
                 hiddenWordCharacters.Add('_');
-                Console.Write($"{hiddenWordCharacters[i]}  ");
+                //Console.Write($"{hiddenWordCharacters[i]}  ");
             }
         }
 
@@ -50,8 +50,15 @@ namespace HangmanGame
                 if (index >= 0)
                 {
                     hiddenWordCharacters[index] = character;
-
                 }
+            }
+        }
+
+        public void DisplayHiddenWordCharacters()
+        {
+            foreach(char character in hiddenWordCharacters)
+            {
+                Console.Write($"{character}  ");
             }
         }
 

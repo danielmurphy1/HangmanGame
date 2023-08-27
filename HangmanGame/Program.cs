@@ -7,6 +7,7 @@ using HangmanGame;
 GameScreen gameScreen = new GameScreen();
 MysteryWord mysteryWord = new MysteryWord();
 Player player = new Player();
+string joined;
 
 gameScreen.DisplayWelcomeMessage();
 
@@ -15,6 +16,7 @@ if (Console.ReadKey().Key == ConsoleKey.Spacebar)
     Console.Clear();
     mysteryWord.GenerateMysterWord();
     mysteryWord.CreateMysteryWordArray(mysteryWord.word);
+    gameScreen.PopulateHiddenWordCharacters(mysteryWord.word.Length);
     gameScreen.DisplayGuessedLetters(player.lettersGuessed);
     gameScreen.DrawGallowsAndHangMan();
     gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
@@ -31,7 +33,7 @@ while (!mysteryWord.isWordSolved)
     Console.WriteLine("");
 
     //show mysteryword characters as _
-    gameScreen.PopulateHiddenWordCharacters(mysteryWord.word.Length);
+    gameScreen.DisplayHiddenWordCharacters();
     player.GuessLetter();
     if (player.IsGuessValid())
     {
@@ -55,11 +57,7 @@ while (!mysteryWord.isWordSolved)
         gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
     }
 
-    //if(Console.ReadKey(true).Key == ConsoleKey.Spacebar)
-    //{
-    //    mysteryWord.ToogleIsWordSolved();
-    //}
-    string joined = String.Join("", gameScreen.hiddenWordCharacters);
+    joined = String.Join("", gameScreen.hiddenWordCharacters);
     if(player.guessesRemaining == 0 || mysteryWord.word == joined)
     {
         mysteryWord.ToogleIsWordSolved();
