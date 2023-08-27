@@ -2,8 +2,7 @@
 //Console.WriteLine("Hello, World!");
 using HangmanGame;
 
-string wordList = File.ReadAllText("../../../../word_list.txt");
-string[] words = wordList.Split(",");
+
 
 GameScreen gameScreen = new GameScreen();
 MysteryWord mysteryWord = new MysteryWord();
@@ -18,6 +17,7 @@ if (Console.ReadKey().Key == ConsoleKey.Spacebar)
     mysteryWord.CreateMysteryWordArray(mysteryWord.word);
     gameScreen.DisplayGuessedLetters(player.lettersGuessed);
     gameScreen.DrawGallowsAndHangMan();
+    gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
 }
 else
 {
@@ -26,9 +26,11 @@ else
 
 while (!mysteryWord.isWordSolved)
 {
-    //show mysteryword characters as _
+    //for Dev only
     gameScreen.DisplayCharactersForMysteryWord(mysteryWord.mysteryWordCharacters);
     Console.WriteLine("");
+
+    //show mysteryword characters as _
     gameScreen.PopulateHiddenWordCharacters(mysteryWord.word.Length);
     player.GuessLetter();
     if (player.IsGuessValid())
@@ -41,20 +43,26 @@ while (!mysteryWord.isWordSolved)
             gameScreen.UpdateHiddenWordCharacters(player.input, mysteryWord.word);
         } else
         {
-            Console.WriteLine("Not Contains");
-
+            player.guessesRemaining--;
         }
         gameScreen.DrawGallowsAndHangMan();
+        gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
     }
     else
     {
         gameScreen.DisplayGuessedLetters(player.lettersGuessed);
         gameScreen.DrawGallowsAndHangMan();
+        gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
     }
-   
+
     //if(Console.ReadKey(true).Key == ConsoleKey.Spacebar)
     //{
     //    mysteryWord.ToogleIsWordSolved();
     //}
+    string joined = String.Join("", gameScreen.hiddenWordCharacters);
+    if(player.guessesRemaining == 0 || mysteryWord.word == joined)
+    {
+        mysteryWord.ToogleIsWordSolved();
+    }
 }
 gameScreen.DisplayGoodbyeMessage();

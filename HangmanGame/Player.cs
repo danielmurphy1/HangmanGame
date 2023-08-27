@@ -22,13 +22,7 @@ namespace HangmanGame
 
         public void AddToGuessedLetters(char character)
         {
-            if (lettersGuessed.Contains(character))
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("That letter has already been guessed. Please guess a new letter.\n");
-                Console.ResetColor();
-            }
-            else
+            if (!lettersGuessed.Contains(character))
             {
                 lettersGuessed.Add(character);
             }
@@ -36,11 +30,19 @@ namespace HangmanGame
 
         public bool IsGuessValid()
         {
-            if (!char.IsLetter(input))
+            if(!char.IsLetter(input))
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("That was not a valid letter. Please guess a valid letter.");
+                Console.ResetColor();
+                return false;
+            }
+            else if(lettersGuessed.Contains(input))
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("You have already guessed that letter. Please guess a different letter");
                 Console.ResetColor();
                 return false;
             }

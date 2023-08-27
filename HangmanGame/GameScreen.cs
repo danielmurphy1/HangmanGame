@@ -71,6 +71,11 @@ namespace HangmanGame
                 Console.Write(letter + " ");
             }
         }
+
+        public void DisplayGuessesRemaining(int guesses)
+        {
+            Console.WriteLine($"\n\nYou have {guesses} guesses remaining.");
+        }
         public void DisplayWelcomeMessage()
         {
             Console.Clear();
