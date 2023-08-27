@@ -12,7 +12,6 @@ namespace HangmanGame
         public string hiddenWord = string.Empty;
         public bool isWordSolved = false;
         public char[] mysteryWordCharacters = Array.Empty<char>();
-        public char[] hiddenWordCharacters = Array.Empty<char>();
 
         public string GenerateMysterWord()
         {
@@ -24,14 +23,6 @@ namespace HangmanGame
         public void CreateMysteryWordArray(string word)
         {
             mysteryWordCharacters = word.ToCharArray();
-        }
-
-        public void PopulateHiddenMysteryWordArray(int mysteryWordLength)
-        {
-            for (int i = 0; i < mysteryWordLength -1; i++)
-            {
-                hiddenWordCharacters[i] = '_';
-            }
         }
 
         public bool ToogleIsWordSolved()

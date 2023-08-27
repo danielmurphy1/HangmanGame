@@ -9,20 +9,20 @@ namespace HangmanGame
     internal class Player
     {
         public int guessesRemaining = 7;
-        //public char[] lettersGuessed = Array.Empty<char>();
         public List<char> lettersGuessed = new List<char>();
         public char input;
 
         public void GuessLetter()
         {
-                Console.WriteLine("\nWhat letter would you like to guess?");
-                input = Console.ReadKey().KeyChar;
+            Console.WriteLine("\nWhat letter would you like to guess?");
+            input = Console.ReadKey().KeyChar;
+            input = char.ToUpper(input);
         }
+
 
         public void AddToGuessedLetters(char character)
         {
-            char upperCaseGuess = char.ToUpper(character);
-            if (lettersGuessed.Contains(upperCaseGuess))
+            if (lettersGuessed.Contains(character))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write("That letter has already been guessed. Please guess a new letter.\n");
@@ -30,7 +30,7 @@ namespace HangmanGame
             }
             else
             {
-                lettersGuessed.Add(upperCaseGuess);
+                lettersGuessed.Add(character);
             }
         }
 

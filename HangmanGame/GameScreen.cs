@@ -17,7 +17,9 @@ namespace HangmanGame
             {"\t\t\t\t\t\t\t\t ", "/", " ", "\\", " ", "|"},
             {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
         };
-       
+        public List<char> hiddenWordCharacters = new List<char>();
+
+
         public void DrawGallowsAndHangMan()
         {
             Console.WriteLine("\n\n\n");
@@ -33,9 +35,23 @@ namespace HangmanGame
 
         public void PopulateHiddenWordCharacters(int mysterWordLength)
         {
-            for(int i = 0; i < mysterWordLength; i++)
+            for (int i = 0; i < mysterWordLength; i++)
             {
-                Console.Write("_  ");
+                hiddenWordCharacters.Add('_');
+                Console.Write($"{hiddenWordCharacters[i]}  ");
+            }
+        }
+
+        public void UpdateHiddenWordCharacters(char character, string mysteryWord)
+        {
+            for (int i = 0; i < mysteryWord.Length - 1; i++)
+            {
+                int index = mysteryWord.IndexOf(character, i);
+                if (index >= 0)
+                {
+                    hiddenWordCharacters[index] = character;
+
+                }
             }
         }
 

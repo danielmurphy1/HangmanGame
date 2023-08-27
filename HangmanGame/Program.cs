@@ -36,6 +36,14 @@ while (!mysteryWord.isWordSolved)
         Console.Clear();
         player.AddToGuessedLetters(player.input);
         gameScreen.DisplayGuessedLetters(player.lettersGuessed);
+        if (mysteryWord.word.Contains(player.input))
+        {
+            gameScreen.UpdateHiddenWordCharacters(player.input, mysteryWord.word);
+        } else
+        {
+            Console.WriteLine("Not Contains");
+
+        }
         gameScreen.DrawGallowsAndHangMan();
     }
     else
