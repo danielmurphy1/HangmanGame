@@ -8,6 +8,8 @@ namespace HangmanGame
 {
     public class GameScreen
     {
+        /*this is what the array looks like if all characters
+         * are manually added.
         public string[,] gallowsAndHangman = new string[6, 6]
         {
             {"\t\t\t\t\t\t\t\t ", " ", "-", "-", "-", "|"},
@@ -15,6 +17,17 @@ namespace HangmanGame
             {"\t\t\t\t\t\t\t\t ", "-", "|", "-", " ", "|"},
             {"\t\t\t\t\t\t\t\t ", " ", "|", " ", " ", "|"},
             {"\t\t\t\t\t\t\t\t ", "/", " ", "\\", " ", "|"},
+            {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
+        };
+        */
+
+        public string[,] gallowsAndHangman = new string[6, 6]
+        {
+            {"\t\t\t\t\t\t\t\t ", " ", "-", "-", "-", "|"},
+            {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
+            {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
+            {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
+            {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
             {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
         };
         public List<char> hiddenWordCharacters = new List<char>();
@@ -33,12 +46,29 @@ namespace HangmanGame
             }
         }
 
+        public void ResetGallowsAndHangman()
+        {
+            gallowsAndHangman = new string[6, 6]
+            {
+                {"\t\t\t\t\t\t\t\t ", " ", "-", "-", "-", "|"},
+                {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
+                {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
+                {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
+                {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
+                {"\t\t\t\t\t\t\t\t ", " ", " ", " ", " ", "|"},
+            };
+        }
+
+        public void UpdateGallowsAndHangman(int updateRow, int updateCol, string updateIcon)
+        {
+            gallowsAndHangman[updateRow, updateCol] = updateIcon;
+        }
+
         public void PopulateHiddenWordCharacters(int mysterWordLength)
         {
             for (int i = 0; i < mysterWordLength; i++)
             {
                 hiddenWordCharacters.Add('_');
-                //Console.Write($"{hiddenWordCharacters[i]}  ");
             }
         }
 
@@ -83,6 +113,7 @@ namespace HangmanGame
         {
             Console.WriteLine($"\n\nYou have {guesses} guesses remaining.");
         }
+
         public void DisplayWelcomeMessage()
         {
             Console.Clear();
@@ -95,6 +126,21 @@ namespace HangmanGame
             Console.WriteLine("\t\t\t\t\tYou have a total of seven guesses. Good Luck!");
             Console.WriteLine("\t\t\t\t\t\tPress SPACEBAR to play.");
             Console.WriteLine("\t\t\t\t\t     Press any other key to quit.");
+        }
+
+        public void DisplayWinMessage()
+        {
+            Console.WriteLine("Congratulations! You have won Console Hangman!");
+        }
+
+        public void DisplayLossMessage()
+        {
+            Console.WriteLine("You have failed to guess the word, and you now hang from the gallows");
+        }
+
+        public void DisplayPlayAgainMessage()
+        {
+            Console.WriteLine("\nWould you like to play again? \nPress Y to play again or any other key to exit.");
         }
 
         public void DisplayGoodbyeMessage()

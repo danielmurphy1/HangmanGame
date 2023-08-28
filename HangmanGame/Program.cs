@@ -1,8 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-//Console.WriteLine("Hello, World!");
-using HangmanGame;
-
-
+﻿using HangmanGame;
 
 GameScreen gameScreen = new GameScreen();
 MysteryWord mysteryWord = new MysteryWord();
@@ -15,7 +11,6 @@ if (Console.ReadKey().Key == ConsoleKey.Spacebar)
 {
     Console.Clear();
     mysteryWord.GenerateMysterWord();
-    mysteryWord.CreateMysteryWordArray(mysteryWord.word);
     gameScreen.PopulateHiddenWordCharacters(mysteryWord.word.Length);
     gameScreen.DisplayGuessedLetters(player.lettersGuessed);
     gameScreen.DrawGallowsAndHangMan();
@@ -28,11 +23,10 @@ else
 
 while (!mysteryWord.isWordSolved)
 {
-    //for Dev only
-    gameScreen.DisplayCharactersForMysteryWord(mysteryWord.mysteryWordCharacters);
+    //Display the mystery word above hidden word spaces - For Dev and Testing
+    //gameScreen.DisplayCharactersForMysteryWord(mysteryWord.mysteryWordCharacters);
     Console.WriteLine("");
-
-    //show mysteryword characters as _
+    //show hidden word characters as _
     gameScreen.DisplayHiddenWordCharacters();
     player.GuessLetter();
     if (player.IsGuessValid())
@@ -46,6 +40,31 @@ while (!mysteryWord.isWordSolved)
         } else
         {
             player.guessesRemaining--;
+            switch (player.guessesRemaining)
+            {
+                case 6:
+                    gameScreen.UpdateGallowsAndHangman(1, 2, "O");
+                    break;
+                case 5:
+                    gameScreen.UpdateGallowsAndHangman(2, 2, "|");
+                    break;
+                case 4:
+                    gameScreen.UpdateGallowsAndHangman(3, 2, "|");
+                    break;
+                case 3:
+                    gameScreen.UpdateGallowsAndHangman(2, 1, "-");
+                    break;
+                case 2:
+                    gameScreen.UpdateGallowsAndHangman(2, 3, "-");
+                    break;
+                case 1:
+                    gameScreen.UpdateGallowsAndHangman(4, 1, "/");
+                    break;
+                case 0:
+                    gameScreen.UpdateGallowsAndHangman(4, 3, "\\");
+                    break;
+
+            }
         }
         gameScreen.DrawGallowsAndHangMan();
         gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
@@ -58,9 +77,43 @@ while (!mysteryWord.isWordSolved)
     }
 
     joined = String.Join("", gameScreen.hiddenWordCharacters);
-    if(player.guessesRemaining == 0 || mysteryWord.word == joined)
+    if(mysteryWord.word == joined)
     {
+        gameScreen.DisplayWinMessage();
+        gameScreen.DisplayHiddenWordCharacters();
         mysteryWord.ToogleIsWordSolved();
+    }
+
+    if(player.guessesRemaining == 0)
+    {
+        gameScreen.DisplayLossMessage();
+        gameScreen.DisplayHiddenWordCharacters();
+        Console.WriteLine("\n");
+        gameScreen.DisplayCharactersForMysteryWord(mysteryWord.mysteryWordCharacters);
+        mysteryWord.ToogleIsWordSolved();
+    }
+
+    if (mysteryWord.isWordSolved)
+    {
+        gameScreen.DisplayPlayAgainMessage();
+        char input = char.ToUpper(Console.ReadKey(true).KeyChar);
+        if(input == 'Y')
+        {
+            Console.Clear();
+            mysteryWord.GenerateMysterWord();
+            player.ResetPlayer();
+            gameScreen.hiddenWordCharacters.Clear();
+            gameScreen.ResetGallowsAndHangman();
+            gameScreen.PopulateHiddenWordCharacters(mysteryWord.word.Length);
+            gameScreen.DisplayGuessedLetters(player.lettersGuessed);
+            gameScreen.DrawGallowsAndHangMan();
+            gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
+            mysteryWord.ToogleIsWordSolved();
+        }
+        else
+        {
+            break;
+        }
     }
 }
 gameScreen.DisplayGoodbyeMessage();

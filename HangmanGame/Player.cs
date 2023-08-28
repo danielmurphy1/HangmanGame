@@ -19,7 +19,11 @@ namespace HangmanGame
             input = char.ToUpper(input);
         }
 
-
+        public void ResetPlayer()
+        {
+            guessesRemaining = 7;
+            lettersGuessed.Clear();
+        }
         public void AddToGuessedLetters(char character)
         {
             if (!lettersGuessed.Contains(character))
@@ -49,7 +53,6 @@ namespace HangmanGame
             else
             {
                 return char.IsLetter(input);
-
             }
         }
     }
