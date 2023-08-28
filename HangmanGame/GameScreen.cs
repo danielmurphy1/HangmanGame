@@ -138,7 +138,7 @@ namespace HangmanGame
 
         public void DisplayLossMessage()
         {
-            Console.WriteLine("You have failed to guess the word, and you now hang from the gallows");
+            Console.WriteLine("You have failed to guess the word, and you now hang from the gallows.");
         }
 
         public void DisplayPlayAgainMessage()
