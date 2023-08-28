@@ -64,6 +64,7 @@ namespace HangmanGame
             gallowsAndHangman[updateRow, updateCol] = updateIcon;
         }
 
+        //populates the hidden word list on the game screen with spaces for each letter in the mystery word
         public void PopulateHiddenWordCharacters(int mysterWordLength)
         {
             for (int i = 0; i < mysterWordLength; i++)
@@ -84,6 +85,7 @@ namespace HangmanGame
             }
         }
 
+        //display the hidden word list as set of characters: begin of game all spaces, updates with each correct letter guess
         public void DisplayHiddenWordCharacters()
         {
             foreach(char character in hiddenWordCharacters)
@@ -92,6 +94,7 @@ namespace HangmanGame
             }
         }
 
+        //displays the mystery word for the player on a game loss
         public void DisplayCharactersForMysteryWord(char[] mysteryWordArray)
         {
             foreach (char letter in mysteryWordArray)

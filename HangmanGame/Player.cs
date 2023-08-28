@@ -24,6 +24,7 @@ namespace HangmanGame
             guessesRemaining = 7;
             lettersGuessed.Clear();
         }
+
         public void AddToGuessedLetters(char character)
         {
             if (!lettersGuessed.Contains(character))
@@ -34,7 +35,7 @@ namespace HangmanGame
 
         public bool IsGuessValid()
         {
-            if(!char.IsLetter(input))
+            if (!char.IsLetter(input))
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -42,7 +43,7 @@ namespace HangmanGame
                 Console.ResetColor();
                 return false;
             }
-            else if(lettersGuessed.Contains(input))
+            else if (lettersGuessed.Contains(input))
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;

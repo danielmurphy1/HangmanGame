@@ -19,6 +19,9 @@ namespace HangmanGame
             words = wordList.Split(",");
         }
 
+        /*generates the mystery word from included list file (word_list.txt). 
+         * list is coneverted to an array in constructor. here the word is made uppercase
+         and then turned into a character array */
         public void GenerateMysterWord()
         {
             Random random = new Random();

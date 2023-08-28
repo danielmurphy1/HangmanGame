@@ -21,6 +21,7 @@ else
     return;
 }
 
+//main game loop
 while (!mysteryWord.isWordSolved)
 {
     //Display the mystery word above hidden word spaces - For Dev and Testing
@@ -29,6 +30,7 @@ while (!mysteryWord.isWordSolved)
     //show hidden word characters as _
     gameScreen.DisplayHiddenWordCharacters();
     player.GuessLetter();
+    //check for valid letter guess
     if (player.IsGuessValid())
     {
         Console.Clear();
@@ -36,10 +38,13 @@ while (!mysteryWord.isWordSolved)
         gameScreen.DisplayGuessedLetters(player.lettersGuessed);
         if (mysteryWord.word.Contains(player.input))
         {
+            //replace spaces with letters if part of mystery word
             gameScreen.UpdateHiddenWordCharacters(player.input, mysteryWord.word);
-        } else
+        } 
+        else
         {
             player.guessesRemaining--;
+            //progressively draw hangman as player guesses wrong
             switch (player.guessesRemaining)
             {
                 case 6:
@@ -77,18 +82,20 @@ while (!mysteryWord.isWordSolved)
     }
 
     joined = String.Join("", gameScreen.hiddenWordCharacters);
-    if(mysteryWord.word == joined)
+    //check if guessed hidden word is equal to the stored mystery word
+    if (mysteryWord.word == joined)
     {
         gameScreen.DisplayWinMessage();
         gameScreen.DisplayHiddenWordCharacters();
         mysteryWord.ToogleIsWordSolved();
     }
 
-    if(player.guessesRemaining == 0)
+    if (player.guessesRemaining == 0)
     {
         gameScreen.DisplayLossMessage();
         gameScreen.DisplayHiddenWordCharacters();
         Console.WriteLine("\n");
+        //this allows the player to see the mystery word after an unsuccessful game over
         gameScreen.DisplayCharactersForMysteryWord(mysteryWord.mysteryWordCharacters);
         mysteryWord.ToogleIsWordSolved();
     }
@@ -97,7 +104,7 @@ while (!mysteryWord.isWordSolved)
     {
         gameScreen.DisplayPlayAgainMessage();
         char input = char.ToUpper(Console.ReadKey(true).KeyChar);
-        if(input == 'Y')
+        if (input == 'Y')
         {
             Console.Clear();
             mysteryWord.GenerateMysterWord();
