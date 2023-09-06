@@ -30,7 +30,7 @@ while (!mysteryWord.isWordSolved)
     if (player.IsGuessValid())
     {
         Console.Clear();
-        player.AddToGuessedLetters(player.input);
+        player.UpdateGuessedLetters();
         gameScreen.DisplayGuessedLetters(player.lettersGuessed);
         if (mysteryWord.word.Contains(player.input))
         {

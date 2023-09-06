@@ -18,11 +18,11 @@ namespace HangmanGame
             lettersGuessed.Clear();
         }
 
-        public void AddToGuessedLetters(char character)
+        public void UpdateGuessedLetters()
         {
-            if (!lettersGuessed.Contains(character))
+            if (!lettersGuessed.Contains(input))
             {
-                lettersGuessed.Add(character);
+                lettersGuessed.Add(input);
             }
         }
 
