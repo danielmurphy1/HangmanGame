@@ -78,9 +78,36 @@ namespace HangmanGame
             };
         }
 
-        public void UpdateGallowsAndHangman(int updateRow, int updateCol, string updateIcon)
+        //public void UpdateGallowsAndHangman(int updateRow, int updateCol, string updateIcon)
+        public void UpdateGallowsAndHangman(int guessesRemaining)
+
         {
-            gallowsAndHangman[updateRow, updateCol] = updateIcon;
+            //gallowsAndHangman[updateRow, updateCol] = updateIcon;
+            switch (guessesRemaining)
+            {
+                case 6:
+                    gallowsAndHangman[1, 2] = "O";
+                    break;
+                case 5:
+                    gallowsAndHangman[2, 2] = "|";
+                    break;
+                case 4:
+                    gallowsAndHangman[3, 2] = "|";
+                    break;
+                case 3:
+                    gallowsAndHangman[2, 1] = "-";
+                    break;
+                case 2:
+                    gallowsAndHangman[2, 3] = "-";
+                    break;
+                case 1:
+                    gallowsAndHangman[4, 1] = "/";
+                    break;
+                case 0:
+                    gallowsAndHangman[4, 3] = "\\";
+                    break;
+
+            }
         }
 
         //populates the hidden word list on the game screen with spaces for each letter in the mystery word

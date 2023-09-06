@@ -9,12 +9,7 @@ gameScreen.DisplayWelcomeMessage();
 
 if (Console.ReadKey().Key == ConsoleKey.Spacebar)
 {
-    //Console.Clear();
     mysteryWord.GenerateMysterWord();
-    //gameScreen.PopulateHiddenWordCharacters(mysteryWord.word.Length);
-    //gameScreen.DisplayGuessedLetters(player.lettersGuessed);
-    //gameScreen.DrawGallowsAndHangMan();
-    //gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
     gameScreen.Initialize(mysteryWord.word.Length, player.lettersGuessed, player.guessesRemaining);
 }
 else
@@ -46,31 +41,7 @@ while (!mysteryWord.isWordSolved)
         {
             player.guessesRemaining--;
             //progressively draw hangman as player guesses wrong
-            switch (player.guessesRemaining)
-            {
-                case 6:
-                    gameScreen.UpdateGallowsAndHangman(1, 2, "O");
-                    break;
-                case 5:
-                    gameScreen.UpdateGallowsAndHangman(2, 2, "|");
-                    break;
-                case 4:
-                    gameScreen.UpdateGallowsAndHangman(3, 2, "|");
-                    break;
-                case 3:
-                    gameScreen.UpdateGallowsAndHangman(2, 1, "-");
-                    break;
-                case 2:
-                    gameScreen.UpdateGallowsAndHangman(2, 3, "-");
-                    break;
-                case 1:
-                    gameScreen.UpdateGallowsAndHangman(4, 1, "/");
-                    break;
-                case 0:
-                    gameScreen.UpdateGallowsAndHangman(4, 3, "\\");
-                    break;
-
-            }
+            gameScreen.UpdateGallowsAndHangman(player.guessesRemaining);
         }
         gameScreen.DrawGallowsAndHangMan();
         gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
@@ -107,7 +78,6 @@ while (!mysteryWord.isWordSolved)
         char input = char.ToUpper(Console.ReadKey(true).KeyChar);
         if (input == 'Y')
         {
-            Console.Clear();
             mysteryWord.GenerateMysterWord();
             player.ResetPlayer();
             gameScreen.ResetGameScreen(mysteryWord.word.Length, player.lettersGuessed, player.guessesRemaining);
