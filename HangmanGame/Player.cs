@@ -12,13 +12,6 @@ namespace HangmanGame
         public List<char> lettersGuessed = new List<char>();
         public char input;
 
-        public void GuessLetter()
-        {
-            Console.WriteLine("\nWhat letter would you like to guess?");
-            input = Console.ReadKey().KeyChar;
-            input = char.ToUpper(input);
-        }
-
         public void ResetPlayer()
         {
             guessesRemaining = 7;

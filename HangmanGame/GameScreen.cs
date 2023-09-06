@@ -196,5 +196,12 @@ namespace HangmanGame
         {
             Console.WriteLine("\n\n\n\t\t\t\t\tThank you for playing Console Hangman! Goodbye.");
         }
+
+        public char GuessLetter()
+        {
+            Console.WriteLine("\nWhat letter would you like to guess?");
+            char input = Console.ReadKey().KeyChar;
+            return char.ToUpper(input);
+        }
     }
 }

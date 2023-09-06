@@ -25,7 +25,7 @@ while (!mysteryWord.isWordSolved)
     Console.WriteLine("");
     //show hidden word characters as _
     gameScreen.DisplayHiddenWordCharacters();
-    player.GuessLetter();
+    player.input = gameScreen.GuessLetter();
     //check for valid letter guess
     if (player.IsGuessValid())
     {
