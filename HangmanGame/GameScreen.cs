@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HangmanGame
+﻿namespace HangmanGame
 {
     public class GameScreen
     {
@@ -78,7 +72,6 @@ namespace HangmanGame
             };
         }
 
-        //public void UpdateGallowsAndHangman(int updateRow, int updateCol, string updateIcon)
         public void UpdateGallowsAndHangman(int guessesRemaining)
 
         {
