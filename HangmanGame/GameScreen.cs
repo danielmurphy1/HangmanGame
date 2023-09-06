@@ -32,6 +32,25 @@ namespace HangmanGame
         };
         public List<char> hiddenWordCharacters = new List<char>();
 
+        public void Initialize(int mysteryWordLength, List<char> lettersGuessed, int guesses)
+        {
+            Console.Clear();
+            PopulateHiddenWordCharacters(mysteryWordLength);
+            DisplayGuessedLetters(lettersGuessed);
+            DrawGallowsAndHangMan();
+            DisplayGuessesRemaining(guesses);
+        }
+
+        public void ResetGameScreen(int mysteryWordLength, List<char> lettersGuessed, int guesses)
+        {
+            Console.Clear();
+            hiddenWordCharacters.Clear();
+            ResetGallowsAndHangman();
+            PopulateHiddenWordCharacters(mysteryWordLength);
+            DisplayGuessedLetters(lettersGuessed);
+            DrawGallowsAndHangMan();
+            DisplayGuessesRemaining(guesses);
+        }
 
         public void DrawGallowsAndHangMan()
         {

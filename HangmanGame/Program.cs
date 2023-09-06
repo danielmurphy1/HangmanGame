@@ -9,12 +9,13 @@ gameScreen.DisplayWelcomeMessage();
 
 if (Console.ReadKey().Key == ConsoleKey.Spacebar)
 {
-    Console.Clear();
+    //Console.Clear();
     mysteryWord.GenerateMysterWord();
-    gameScreen.PopulateHiddenWordCharacters(mysteryWord.word.Length);
-    gameScreen.DisplayGuessedLetters(player.lettersGuessed);
-    gameScreen.DrawGallowsAndHangMan();
-    gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
+    //gameScreen.PopulateHiddenWordCharacters(mysteryWord.word.Length);
+    //gameScreen.DisplayGuessedLetters(player.lettersGuessed);
+    //gameScreen.DrawGallowsAndHangMan();
+    //gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
+    gameScreen.Initialize(mysteryWord.word.Length, player.lettersGuessed, player.guessesRemaining);
 }
 else
 {
@@ -109,12 +110,7 @@ while (!mysteryWord.isWordSolved)
             Console.Clear();
             mysteryWord.GenerateMysterWord();
             player.ResetPlayer();
-            gameScreen.hiddenWordCharacters.Clear();
-            gameScreen.ResetGallowsAndHangman();
-            gameScreen.PopulateHiddenWordCharacters(mysteryWord.word.Length);
-            gameScreen.DisplayGuessedLetters(player.lettersGuessed);
-            gameScreen.DrawGallowsAndHangMan();
-            gameScreen.DisplayGuessesRemaining(player.guessesRemaining);
+            gameScreen.ResetGameScreen(mysteryWord.word.Length, player.lettersGuessed, player.guessesRemaining);
             mysteryWord.ToogleIsWordSolved();
         }
         else
