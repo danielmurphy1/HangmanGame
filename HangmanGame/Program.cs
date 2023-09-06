@@ -18,7 +18,7 @@ else
 }
 
 //main game loop
-while (!mysteryWord.isWordSolved)
+while (!player.hasWordSolved)
 {
     //Display the mystery word above hidden word spaces - For Dev and Testing
     //gameScreen.DisplayCharactersForMysteryWord(mysteryWord.mysteryWordCharacters);
@@ -59,7 +59,7 @@ while (!mysteryWord.isWordSolved)
     {
         gameScreen.DisplayWinMessage();
         gameScreen.DisplayHiddenWordCharacters();
-        mysteryWord.ToogleIsWordSolved();
+        player.ToggleHasWordSolved();
     }
 
     if (player.guessesRemaining == 0)
@@ -69,10 +69,10 @@ while (!mysteryWord.isWordSolved)
         Console.WriteLine("\n");
         //this allows the player to see the mystery word after an unsuccessful game over
         gameScreen.DisplayCharactersForMysteryWord(mysteryWord.mysteryWordCharacters);
-        mysteryWord.ToogleIsWordSolved();
+        player.ToggleHasWordSolved();
     }
 
-    if (mysteryWord.isWordSolved)
+    if (player.hasWordSolved)
     {
         gameScreen.DisplayPlayAgainMessage();
         char input = char.ToUpper(Console.ReadKey(true).KeyChar);
@@ -81,7 +81,6 @@ while (!mysteryWord.isWordSolved)
             mysteryWord.GenerateMysterWord();
             player.ResetPlayer();
             gameScreen.ResetGameScreen(mysteryWord.word.Length, player.lettersGuessed, player.guessesRemaining);
-            mysteryWord.ToogleIsWordSolved();
         }
         else
         {

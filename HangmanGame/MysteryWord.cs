@@ -9,7 +9,6 @@ namespace HangmanGame
     internal class MysteryWord
     {
         public string word = string.Empty;
-        public bool isWordSolved = false;
         public char[] mysteryWordCharacters = Array.Empty<char>();
         private string[] words = File.ReadAllText("../../../../word_list.txt").Split(",");
 
@@ -22,11 +21,6 @@ namespace HangmanGame
             int wordIndex = random.Next(0, words.Length);
             word = words[wordIndex].ToUpper();
             mysteryWordCharacters = word.ToCharArray();
-        }
-
-        public bool ToogleIsWordSolved()
-        {
-            return isWordSolved = !isWordSolved;
         }
     }
 }

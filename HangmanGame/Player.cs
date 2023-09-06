@@ -11,11 +11,13 @@ namespace HangmanGame
         public int guessesRemaining = 7;
         public List<char> lettersGuessed = new List<char>();
         public char input;
+        public bool hasWordSolved = false;
 
         public void ResetPlayer()
         {
             guessesRemaining = 7;
             lettersGuessed.Clear();
+            hasWordSolved = false;
         }
 
         public void UpdateGuessedLetters()
@@ -48,6 +50,11 @@ namespace HangmanGame
             {
                 return char.IsLetter(input);
             }
+        }
+
+        public bool ToggleHasWordSolved()
+        {
+            return hasWordSolved = !hasWordSolved;
         }
     }
 }
