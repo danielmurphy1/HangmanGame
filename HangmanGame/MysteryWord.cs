@@ -11,13 +11,7 @@ namespace HangmanGame
         public string word = string.Empty;
         public bool isWordSolved = false;
         public char[] mysteryWordCharacters = Array.Empty<char>();
-        private string wordList = File.ReadAllText("../../../../word_list.txt");
-        private string[] words;
-
-        public MysteryWord()
-        {
-            words = wordList.Split(",");
-        }
+        private string[] words = File.ReadAllText("../../../../word_list.txt").Split(",");
 
         /*generates the mystery word from included list file (word_list.txt). 
          * list is coneverted to an array in constructor. here the word is made uppercase
